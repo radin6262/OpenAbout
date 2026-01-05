@@ -9,8 +9,10 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 import cpuinfo
+# ======= OS CONFIGURATION/BRANDING =======
 Os = "OpenDesktop"
-class XPAboutPC(QMainWindow):
+# =========================================
+class OpenAbout(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("System Properties")
@@ -816,7 +818,7 @@ def main():
     app.setFont(font)
     
     # Create and show window
-    window = XPAboutPC()
+    window = OpenAbout()
     window.show()
     
     sys.exit(app.exec())
