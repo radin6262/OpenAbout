@@ -8,7 +8,7 @@
 
 ## Supported Platforms
 * Linux
-
+* Windows
 ## Installation
 - clone the repo or download zip source
 - extract it
