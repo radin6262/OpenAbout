@@ -471,20 +471,20 @@ class OpenAbout(QMainWindow):
         refresh_btn.setFixedWidth(100)
         
         # OK button
-        ok_btn = QPushButton("OK")
+        ok_btn = QPushButton("Close")
         ok_btn.clicked.connect(self.close)
         ok_btn.setDefault(True)
         ok_btn.setFixedWidth(75)
         
         # Cancel button
-        cancel_btn = QPushButton("Cancel")
-        cancel_btn.clicked.connect(self.close)
-        cancel_btn.setFixedWidth(75)
+        # cancel_btn = QPushButton("Cancel")
+        # cancel_btn.clicked.connect(self.close)
+        # cancel_btn.setFixedWidth(75)
         
         button_layout.addWidget(refresh_btn)
         button_layout.addStretch()
         button_layout.addWidget(ok_btn)
-        button_layout.addWidget(cancel_btn)
+        # button_layout.addWidget(cancel_btn)
         
         layout.addWidget(button_widget)
         
