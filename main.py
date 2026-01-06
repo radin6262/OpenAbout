@@ -8,7 +8,6 @@ from datetime import datetime, timedelta
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
-import cpuinfo
 # ======= OS CONFIGURATION/BRANDING =======
 Os = "OpenDesktop"
 # =========================================
@@ -470,20 +469,20 @@ class OpenAbout(QMainWindow):
         refresh_btn.clicked.connect(self.update_all_info)
         refresh_btn.setFixedWidth(100)
         
-        # OK button
-        ok_btn = QPushButton("Close")
-        ok_btn.clicked.connect(self.close)
-        ok_btn.setDefault(True)
-        ok_btn.setFixedWidth(75)
+        # close button
+        close_btn = QPushButton("Close")
+        close_btn.clicked.connect(self.close)
+        close_btn.setDefault(True)
+        close_btn.setFixedWidth(75)
         
-        # Cancel button
+        # # Cancel button
         # cancel_btn = QPushButton("Cancel")
         # cancel_btn.clicked.connect(self.close)
         # cancel_btn.setFixedWidth(75)
         
         button_layout.addWidget(refresh_btn)
         button_layout.addStretch()
-        button_layout.addWidget(ok_btn)
+        button_layout.addWidget(close_btn)
         # button_layout.addWidget(cancel_btn)
         
         layout.addWidget(button_widget)
@@ -600,7 +599,7 @@ class OpenAbout(QMainWindow):
         except Exception as e:
             # self.manufacturer_label.setText("Unknown")
             self.model_label.setText("Unknown")
-            self.bios_label.setText("Unknown")
+            # self.bios_label.setText("Unknown")
             
     def get_cpu_info(self):
         """Get CPU information"""
