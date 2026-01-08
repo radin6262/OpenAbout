@@ -8,8 +8,8 @@ from datetime import datetime, timedelta
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
-# ======= OS CONFIGURATION/BRANDING =======
-Os = "OpenDesktop"
+# ======= OS CONFIGURATION/PRESET =======
+Os = ""
 # =========================================
 class OpenAbout(QMainWindow):
     def __init__(self):
@@ -216,9 +216,9 @@ class OpenAbout(QMainWindow):
         self.manufacturer_label = QLabel(f"{Os}")
         comp_layout.addWidget(self.manufacturer_label, 0, 1)
         
-        comp_layout.addWidget(QLabel("Model:"), 1, 0)
-        self.model_label = QLabel("Loading...")
-        comp_layout.addWidget(self.model_label, 1, 1)
+        # comp_layout.addWidget(QLabel("Model:"), 1, 0)
+        # self.model_label = QLabel("Loading...")
+        # comp_layout.addWidget(self.model_label, 1, 1)
         
         # comp_layout.addWidget(QLabel("BIOS/UEFI:"), 2, 0)
         # self.bios_label = QLabel("Loading...")
@@ -508,6 +508,16 @@ class OpenAbout(QMainWindow):
         else:
             self.system_title.setText(f"{system} {release}")
             self.version_label.setText(version)
+        if Os != "":
+            self.manufacturer_label.setText(f"{Os}")
+            pass
+        else:
+            if system == "Windows":
+                self.manufacturer_label.setText(f"Microsoft Windows {release}")
+            elif system == "Linux":
+                self.manufacturer_label.setText("Linux")
+            else:
+                self.manufacturer_label.setText(f"{system} {release}")
         
         # Manufacturer and model
         self.get_system_manufacturer()
@@ -564,12 +574,14 @@ class OpenAbout(QMainWindow):
                     import wmi
                     c = wmi.WMI()
                     for computer in c.Win32_ComputerSystem():
-                        self.model_label.setText("unknown")
+                        # self.model_label.setText("unknown")
+                        pass
                     for bios in c.Win32_BIOS():
                         # self.bios_label.setText(bios.Caption or "Unknown")
                         pass
                 except:
-                    self.model_label.setText("Unknown")
+                    pass
+                    # self.model_label.setText("Unknown")
                     # self.bios_label.setText("BIOS")
                     
             elif system == "Linux":
@@ -579,11 +591,13 @@ class OpenAbout(QMainWindow):
                         pass
                 except:
                     pass
+
                 try:
                     with open('/sys/class/dmi/id/product_name', 'r') as f:
-                        self.model_label.setText(f.read().strip() or "Unknown")
+                        # self.model_label.setText(f.read().strip() or "Unknown")
+                        pass
                 except:
-                    self.model_label.setText("Unknown")
+                    pass
                     
                 try:
                     with open('/sys/class/dmi/id/bios_version', 'r') as f:
@@ -593,13 +607,14 @@ class OpenAbout(QMainWindow):
                     
             else:  # macOS
                 # self.manufacturer_label.setText("Apple")
-                self.model_label.setText("Mac")
+                # self.model_label.setText("Mac")
                 # self.bios_label.setText("EFI")
+                pass
                 
         except Exception as e:
             # self.manufacturer_label.setText("Unknown")
-            self.model_label.setText("Unknown")
-            # self.bios_label.setText("Unknown")
+            # self.model_label.setText("Unknown")
+            pass
             
     def get_cpu_info(self):
         """Get CPU information"""
